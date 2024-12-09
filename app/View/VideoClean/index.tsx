@@ -96,16 +96,27 @@ const VideoClean = ({ token }) => {
         <Text style={styles.headerText}>视频清洗</Text>
       </View>
 
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{
+          paddingBottom: 100,
+        }}
+        showsVerticalScrollIndicator={false}
+      >
         {/* 短视频专项去重模式部分 */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>短视频专项去重模式（单选）</Text>
           <View style={styles.tagsMid}>
-            {tagOptions1.map((tag) => (
+            {tagOptions1.map((tag, index) => (
               <TouchableOpacity
                 key={tag.id}
                 onPress={() => toggleSelection(tag)}
-                style={[styles.tagItem, tag.selected && styles.selectedTag]}
+                style={[
+                  styles.tagItem,
+                  styles.tagItemLong,
+                  tag.selected && styles.selectedTag,
+                  index % 2 === 1 ? styles.selectedTagLongMid : null,
+                ]}
               >
                 <Text style={styles.tagText}>{tag.name}</Text>
               </TouchableOpacity>
@@ -117,11 +128,15 @@ const VideoClean = ({ token }) => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>视频特效</Text>
           <View style={styles.tags}>
-            {tagOptions2.map((tag) => (
+            {tagOptions2.map((tag, index) => (
               <TouchableOpacity
                 key={tag.id}
                 onPress={() => toggleSelection(tag)}
-                style={[styles.tagItem, tag.selected && styles.selectedTag]}
+                style={[
+                  styles.tagItem,
+                  tag.selected && styles.selectedTag,
+                  index % 3 === 1 ? styles.selectedTagMid : null,
+                ]}
               >
                 <Text style={styles.tagText}>{tag.name}</Text>
               </TouchableOpacity>
@@ -181,16 +196,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   container: {
-    position: "relative",
+    // position: "relative",
     // height: calc(100vh - 190px);
-    width: "80%",
-    marginHorizontal: "10%",
+    // width: "80%",
+    // marginHorizontal: "6%",
+    // marginTop: -40,
+    // padding: 15,
+    // backgroundColor: "white",
+    // borderRadius: 20,
+    // borderWidth: 1,
+    // borderColor: "#fbfbfb",
+
+    marginHorizontal: "6%",
     marginTop: -40,
     padding: 15,
-    backgroundColor: "white",
-    borderRadius: 20,
-    borderWidth: 1,
+    backgroundColor: "#ffffff",
     borderColor: "#fbfbfb",
+    borderWidth: 1,
+    borderRadius: 20,
+    flex: 1,
   },
   section: {
     marginBottom: 20,
@@ -200,25 +224,40 @@ const styles = StyleSheet.create({
   tags: { flexDirection: "row", flexWrap: "wrap", marginTop: 10 },
   tagItem: {
     marginBottom: 10,
-    marginRight: 15,
+    // marginRight: 15,
     borderRadius: 6,
     borderWidth: 1,
+    borderColor: "#f2f2f2",
     padding: 5,
     backgroundColor: "#f2f2f2",
+    width: "30%",
+  },
+  tagItemLong: {
+    width: "48%",
+  },
+  selectedTagLongMid: {
+    // backgroundColor: "red",
+    marginLeft: 12,
   },
   selectedTag: { backgroundColor: "#59c2e8", borderColor: "#59c2e8" },
-  tagText: { fontSize: 14 },
+  selectedTagMid: {
+    // marginRight: 0,
+    marginHorizontal: 14,
+    // backgroundColor: "red",
+  },
+  tagText: { fontSize: 14, textAlign: "center" },
   btn: {
-    marginRight: 20,
+    // marginRight: 20,
     marginTop: 10,
     backgroundColor: "#59c2e8",
     height: 50,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
+    width: "48%",
   },
   btnText: { color: "white", fontSize: 18 },
-  linear: { backgroundColor: "#f68e55" },
+  linear: { backgroundColor: "#f68e55", marginLeft: 10 },
   checkboxRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   checkboxLabel: { fontSize: 14, color: "black" },
 });

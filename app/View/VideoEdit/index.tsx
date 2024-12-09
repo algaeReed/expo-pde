@@ -40,11 +40,15 @@ const VideoEdit = ({ token }) => {
         {/* 混剪领域 */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>混剪领域</Text>
-          <View style={styles.tags}>
+          <View style={[styles.tags]}>
             {tagOptions1.map((tag) => (
               <TouchableOpacity
                 key={tag.id}
-                style={[styles.tagItem, tag.selected ? styles.selectedTag : null]}
+                style={[
+                  styles.tagItem,
+                  tag.selected ? styles.selectedTag : null,
+                  tag.id == "tag3" ? styles.tagItemBlock : null,
+                ]}
                 onPress={() => toggleSelection(tag)}
               >
                 <Text style={styles.tagText}>{tag.name}</Text>
@@ -87,7 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   container: {
-    marginHorizontal: "10%",
+    marginHorizontal: "6%",
     marginTop: -40,
     padding: 15,
     backgroundColor: "#ffffff",
@@ -118,7 +122,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
-    minWidth: "30%",
+    minWidth: "48%",
+  },
+  tagItemBlock: {
+    minWidth: "100%",
   },
   tagText: {
     fontSize: 14,

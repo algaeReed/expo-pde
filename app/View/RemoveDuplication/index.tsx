@@ -81,7 +81,10 @@ const RemoveDuplication = ({}) => {
               <Text style={styles.tagText}>解析去水印</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={handleStartDownload} style={[styles.tagItem, styles.linear, styles.btnLarge]}>
+          <TouchableOpacity
+            onPress={handleStartDownload}
+            style={[styles.tagItem, styles.linear, styles.btnLarge, styles.tagItemBlock]}
+          >
             <Text style={styles.tagText}>开始下载</Text>
           </TouchableOpacity>
         </View>
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
   container: {
     height: "100%",
     // width: "80%",
-    marginHorizontal: "10%",
+    marginHorizontal: "6%",
     marginTop: -40,
     padding: 15,
     backgroundColor: "#ffffff",
@@ -151,13 +154,14 @@ const styles = StyleSheet.create({
   tagItem: {
     paddingVertical: 6,
     paddingHorizontal: 12,
-    backgroundColor: "#f6f6f6",
+    // backgroundColor: "#f6f6f6",
     borderRadius: 15,
     marginBottom: 10,
     justifyContent: "center",
     alignItems: "center",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
     // cursor: "pointer",
+    width: "48%",
   },
   linear: {
     backgroundColor: "#54b8e3",
@@ -171,6 +175,9 @@ const styles = StyleSheet.create({
   btnLarge: {
     paddingVertical: 12,
     paddingHorizontal: 12,
+  },
+  tagItemBlock: {
+    minWidth: "100%",
   },
 });
 
