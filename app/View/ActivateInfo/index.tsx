@@ -3,9 +3,10 @@ import { useRouter } from "expo-router";
 
 import React, { useEffect, useState } from "react";
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-const router = useRouter();
 
 const ActivateInfo = ({}) => {
+  const router = useRouter();
+
   // const ActivateInfo = ({ token, setToken }) => {
   const [currentToken, setCurrentToken] = useState("");
   const navigation = useNavigation();

@@ -12,9 +12,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-const router = useRouter();
 
 const ActivateInfo = ({}) => {
+  const router = useRouter();
+
   const [inputValue, setInputValue] = useState("");
 
   const startDeduplication = () => {

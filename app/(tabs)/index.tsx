@@ -46,7 +46,7 @@ export default function HomeScreen() {
           const Component = item.component; // 获取当前 Tab 对应的组件
           return (
             <View key={index} style={[styles.page]}>
-              <Component /> {/* 渲染对应的组件 */}
+              <Component />
             </View>
           );
         }}
