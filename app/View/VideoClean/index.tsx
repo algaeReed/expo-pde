@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import { FFmpegKit } from "ffmpeg-kit-react-native";
+import React, { useEffect, useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const VideoClean = ({ token }) => {
+  useEffect(() => {
+    console.log("ffmpeg");
+    console.log(FFmpegKit);
+  }, []);
+
   const [md5Selected, setMd5Selected] = useState(false);
 
   const tagOptions1 = [
