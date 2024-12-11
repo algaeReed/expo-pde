@@ -1,8 +1,11 @@
+import useUserStore from "@/store";
 import { FFmpegKit } from "ffmpeg-kit-react-native";
 import React, { useEffect, useState } from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const VideoClean = ({ token }) => {
+const VideoClean = ({}) => {
+  const { userInfo, setUserInfo, clearUserInfo } = useUserStore();
+
   useEffect(() => {
     console.log("ffmpeg");
     console.log(FFmpegKit);
@@ -77,7 +80,7 @@ const VideoClean = ({ token }) => {
   };
 
   const startRepeating = () => {
-    if (!token) {
+    if (!userInfo.token) {
       alert("软件未激活，请激活软件");
     } else {
       const selectedTags = [

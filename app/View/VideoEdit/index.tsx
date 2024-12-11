@@ -1,7 +1,10 @@
+import useUserStore from "@/store";
 import React, { useState } from "react";
 import { Alert, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const VideoEdit = ({ token }) => {
+const VideoEdit = ({}) => {
+  const { userInfo, setUserInfo, clearUserInfo } = useUserStore();
+
   const [tagOptions1, setTagOptions1] = useState([
     { id: "tag1", name: "智能分割", selected: false, command: "smart_split" },
     { id: "tag2", name: "等量分割", selected: false, command: "equal_split" },
@@ -20,7 +23,7 @@ const VideoEdit = ({ token }) => {
   };
 
   const startDeduplication = () => {
-    if (!token) {
+    if (!userInfo.token) {
       Alert.alert("提示", "软件未激活，请激活软件");
     } else {
       console.log("开始处理");

@@ -1,3 +1,4 @@
+import useUserStore from "@/store";
 import React, { useState } from "react";
 import {
   Alert,
@@ -12,7 +13,8 @@ import {
 } from "react-native";
 
 const RemoveDuplication = ({}) => {
-  const token = "";
+  const { userInfo, setUserInfo, clearUserInfo } = useUserStore();
+
   const [textareaValue, setTextareaValue] = useState("");
   const [videoDownUrl, setVideoDownUrl] = useState("");
 
@@ -28,7 +30,7 @@ const RemoveDuplication = ({}) => {
   };
 
   const handleParseWatermark = () => {
-    if (!token) {
+    if (!userInfo.token) {
       Alert.alert("软件未激活，请激活软件");
     } else {
       console.log("执行解析去水印操作", textareaValue);
@@ -37,7 +39,7 @@ const RemoveDuplication = ({}) => {
   };
 
   const handleStartDownload = () => {
-    if (!token) {
+    if (!userInfo.token) {
       Alert.alert("软件未激活，请激活软件");
     } else {
       console.log("执行开始下载操作");

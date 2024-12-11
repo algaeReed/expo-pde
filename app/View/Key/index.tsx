@@ -1,3 +1,4 @@
+import useUserStore from "@/store";
 import { useRouter } from "expo-router";
 
 import React, { useState } from "react";
@@ -14,6 +15,8 @@ import {
 } from "react-native";
 
 const ActivateInfo = ({}) => {
+  const { userInfo, setUserInfo, clearUserInfo } = useUserStore();
+
   const router = useRouter();
 
   const [inputValue, setInputValue] = useState("");
@@ -34,6 +37,9 @@ const ActivateInfo = ({}) => {
       const isActivated = true; // Simulate activation success
 
       if (isActivated) {
+        setUserInfo({
+          token: inputValue,
+        });
         // Store token locally
         // Save to AsyncStorage or other local storage
         Alert.alert("成功", "激活成功", [

@@ -1,20 +1,23 @@
+import useUserStore from "@/store";
 import { useNavigation } from "@react-navigation/native"; // 用于导航跳转
 import { useRouter } from "expo-router";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const ActivateInfo = ({}) => {
+  const { userInfo, setUserInfo, clearUserInfo } = useUserStore();
+
   const router = useRouter();
 
   // const ActivateInfo = ({ token, setToken }) => {
-  const [currentToken, setCurrentToken] = useState("");
+  // const [currentToken, setCurrentToken] = useState("");
   const navigation = useNavigation();
 
   useEffect(() => {
     // 检查激活状态
     const storedToken = getStoredToken();
-    setCurrentToken(storedToken || "");
+    // setCurrentToken(storedToken || "");
   }, []);
 
   const getStoredToken = () => {
@@ -30,14 +33,14 @@ const ActivateInfo = ({}) => {
   };
 
   const unbind = () => {
-    if (!currentToken) {
+    if (!userInfo.token) {
       alert("未激活，无需解绑");
       return;
     }
 
     console.log("解绑操作触发...");
     // 清除本地存储中的 token
-    setCurrentToken("");
+    clearUserInfo();
     // setToken(""); // 通知父组件清空 token
     alert("解绑成功");
   };
@@ -53,7 +56,7 @@ const ActivateInfo = ({}) => {
       <ScrollView style={styles.container}>
         {/* 激活部分 */}
         <View style={[styles.section, styles.sectionPadding]}>
-          {!currentToken ? (
+          {!userInfo.token ? (
             <>
               <Text style={styles.h3}>软件尚未激活，请激活使用</Text>
               <TouchableOpacity onPress={goToActivationPage} style={[styles.tagItem, styles.btn, styles.linear]}>
@@ -63,7 +66,7 @@ const ActivateInfo = ({}) => {
           ) : (
             <>
               <Text style={styles.h3}>软件已激活，可以正常使用</Text>
-              <Text>{currentToken}</Text>
+              <Text>{userInfo.token}</Text>
               <TouchableOpacity onPress={unbind} style={[styles.tagItem, styles.btn, styles.linear]}>
                 <Text style={styles.btnText}>解绑</Text>
               </TouchableOpacity>
